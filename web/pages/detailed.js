@@ -13,7 +13,7 @@ const Detailed = () => (
         左侧
       </Col>
 
-      <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
+      <Col className="comm-box" xs={0} sm={0} md={7} lg={5} xl={4}>
         右侧
       </Col>
     </Row>

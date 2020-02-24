@@ -4,6 +4,7 @@ import {Row, Col} from 'antd'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
+import Footer from '../components/Footer'
 
 const Home = () => (
   <>
@@ -16,10 +17,11 @@ const Home = () => (
         左侧
       </Col>
 
-      <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
-      <Author />
-      <Advert />
+      <Col className="comm-box" xs={0} sm={0} md={7} lg={5} xl={4}>
+        <Author />
+        {/* <Advert /> */}
       </Col>
+      <Footer />  
     </Row>
  </>
 )
