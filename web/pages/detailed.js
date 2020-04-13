@@ -109,4 +109,12 @@ const Detailed = () => {
   )
 }
 
+Detailed.getInitialProps = async(context)=>{
+
+  console.log(context.query.id)
+  let id =context.query.id
+  const res = await  axios('http://127.0.0.1:7001/default/getArticleById/'+id)
+  return res.data.data[0]
+}
+
 export default Detailed
