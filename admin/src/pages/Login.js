@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Card, Input, Icon, Button, Spin } from 'antd';
-import './styles/login.css'
+import './styles/Login.css'
 
 function Login() {
   const [userName, setUserName] = useState('');
