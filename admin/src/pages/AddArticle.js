@@ -19,9 +19,9 @@ function AddArticle() {
   const [updateDate, setUpdateDate] = useState(); //修改日志的日期
   const [typeInfo, setTypeInfo] = useState([]); // 文章类别信息
   const [selectedType, setSelectType] = useState(1); //选择的文章类别
-  
+  const renderer = new marked.Renderer();
   marked.setOptions({
-    renderer: marked.Renderer(),
+    renderer: renderer,
     gfm: true,
     pedantic: false,
     sanitize: false,
