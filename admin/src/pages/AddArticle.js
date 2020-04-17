@@ -6,8 +6,6 @@ import { Row, Col, Input, Select, Button, DatePicker } from 'antd';
 const { Option } = Select;
 const { TextArea } = Input;
 
-
-
 function AddArticle() {
   const [articleId, setArticleId] = useState(0); // 文章的ID，如果是0说明是新增加，如果不是0，说明是修改
   const [articleTitle, setArticleTitle] = useState(''); //文章标题
@@ -67,13 +65,12 @@ function AddArticle() {
                 onPressEnter={changeContent}
                 placeholder='文章内容'
               />
+            </Col>
+            <Col span={12}>
               <div
                 className='show-html'
                 dangerouslySetInnerHTML={{ __html: markdownContent }}
               ></div>
-            </Col>
-            <Col span={12}>
-              <div className='show-html'></div>
             </Col>
           </Row>
         </Col>

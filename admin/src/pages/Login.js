@@ -1,23 +1,52 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Card, Input, Icon, Button, Spin } from 'antd';
-import './styles/Login.css'
+import { Card, Input, Icon, Button, Spin, message } from 'antd';
+import md5 from 'md5';
+import axios from 'axios';
+import servicePath from '../apiUrl';
+import './styles/Login.css';
 
-function Login() {
+function Login(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const checkLogin = ()=>{
-    setIsLoading(true)
-    setTimeout(()=>{
-        setIsLoading(false)
-    },1000)
-}
+  const checkLogin = () => {
+    setIsLoading(true);
+    if (!userName) {
+      message.error('用户名不能为空');
+      return false;
+    } else if (!password) {
+      message.error('密码不能为空');
+      return false;
+    }
+    let dataProps = {
+      userName,
+      password,
+    };
+    axios({
+      method: 'post',
+      url: servicePath.checkLogin,
+      data: dataProps,
+      withCredentials: true,
+    }).then((res) => {
+      setIsLoading(false);
+      if (res.data.data == '登录成功') {
+        localStorage.setItem('openId', res.data.openId);
+        props.history.push('/index');
+      } else {
+        message.error('用户名密码错误');
+      }
+    });
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
   return (
     <div className='login-div'>
       <Spin tip='Loading...' spinning={isLoading}>
         <Card
-          title='JSPang Blog  System'
+          title="Rick's Blog"
           bordered={true}
           style={{ width: 400 }}
         >
@@ -38,7 +67,7 @@ function Login() {
             placeholder='Enter your password'
             prefix={<Icon type='key' style={{ color: 'rgba(0,0,0,.25)' }} />}
             onChange={(e) => {
-              setPassword(e.target.value);
+              setPassword(md5(e.target.value));
             }}
           />
           <br />
