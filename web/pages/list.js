@@ -18,7 +18,6 @@ import 'highlight.js/styles/monokai-sublime.css';
 import './styles/list.less';
 
 const BlogList = (list) => {
-  console.log('list', list)
   const [ mylist , setMylist ] = useState(list.data);
   
   useEffect(()=>{
