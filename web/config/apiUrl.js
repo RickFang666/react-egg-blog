@@ -3,7 +3,7 @@ console.log('env:', process.env.NODE_ENV)
 if(process.env.NODE_ENV === 'development') {
   ipUrl = 'http://127.0.0.1:7001/default/' 
 } else {
-  ipUrl = '182.61.147.53:7001/default/' 
+  ipUrl = 'http://182.61.147.53:7001/default/' 
 }
 const servicePath = {
   getArticleList:ipUrl + 'getArticleList' ,  //  首页文章列表接口
