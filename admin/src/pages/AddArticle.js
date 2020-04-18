@@ -34,6 +34,13 @@ function AddArticle(props) {
 
   useEffect(() => {
     getTypeInfo();
+    //获得文章ID
+    let tmpId = props.match.params.id;
+    console.log('tmpId', tmpId)
+    if (tmpId) {
+      setArticleId(tmpId);
+      getArticleById(tmpId);
+    }
   }, []);
 
   marked.setOptions({
@@ -77,7 +84,7 @@ function AddArticle(props) {
 
   //选择类别后的便哈
   const selectTypeHandler = (value) => {
-    console.log('value', value)
+    console.log('value', value);
     setSelectType(value);
   };
 
@@ -122,26 +129,40 @@ function AddArticle(props) {
           message.error('文章保存失败');
         }
       });
-    }else{
-      dataProps.id = articleId 
+    } else {
+      dataProps.id = articleId;
       axios({
-          method:'post',
-          url:servicePath.updateArticle,
-          header:{ 'Access-Control-Allow-Origin':'*' },
-          data:dataProps,
-          withCredentials: true
-      }).then(
-          res=>{
-          if(res.data.isSuccess){
-              message.success('文章保存成功')
-          }else{
-              message.error('保存失败');
-          }
-  
-  
-          }
-      )
-  }
+        method: 'post',
+        url: servicePath.updateArticle,
+        header: { 'Access-Control-Allow-Origin': '*' },
+        data: dataProps,
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.isSuccess) {
+          message.success('文章保存成功');
+        } else {
+          message.error('保存失败');
+        }
+      });
+    }
+  };
+
+  const getArticleById = (id) => {
+    axios(servicePath.getArticleById + id, {
+      withCredentials: true,
+      header: { 'Access-Control-Allow-Origin': '*' },
+    }).then((res) => {
+      //let articleInfo= res.data.data[0]
+      setArticleTitle(res.data.data[0].title);
+      setArticleContent(res.data.data[0].article_content);
+      let html = marked(res.data.data[0].article_content);
+      setMarkdownContent(html);
+      setIntroducemd(res.data.data[0].introduce);
+      let tmpInt = marked(res.data.data[0].introduce);
+      setIntroducehtml(tmpInt);
+      setShowDate(res.data.data[0].addTime);
+      setSelectType(res.data.data[0].typeId);
+    });
   };
 
   return (

@@ -16,5 +16,24 @@ module.exports = app => {
   // router.get('/admin/checkLogin', controller.admin.main.checkLogin);
   router.post('/admin/checkLogin', controller.admin.main.checkLogin);
   router.post('/admin/addArticle', adminauth, controller.admin.main.addArticle);
-  router.post('/admin/updateArticle', adminauth, controller.admin.main.updateArticle);
+  router.post(
+    '/admin/updateArticle',
+    adminauth,
+    controller.admin.main.updateArticle
+  );
+  router.get(
+    '/admin/getArticleList',
+    adminauth,
+    controller.admin.main.getArticleList
+  );
+  router.get(
+    '/admin/delArticle/:id',
+    adminauth,
+    controller.admin.main.delArticle
+  );
+  router.get(
+    '/admin/getArticleById/:id',
+    adminauth,
+    controller.admin.main.getArticleById
+  );
 };
