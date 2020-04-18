@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Route } from 'react-router-dom';
 import AddArticle from './AddArticle';
 import ArticleList from './ArticleList';
-import './styles/AdminIndex.css';
+import './styles/adminIndex.css';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;

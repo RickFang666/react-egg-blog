@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/ArticleList.css';
+import './styles/articleList.css';
 import { List, Row, Col, Modal, message, Button, Switch } from 'antd';
 import axios from 'axios';
 import servicePath from '../apiUrl';

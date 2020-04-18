@@ -4,7 +4,7 @@ import { Card, Input, Icon, Button, Spin, message } from 'antd';
 import md5 from 'md5';
 import axios from 'axios';
 import servicePath from '../apiUrl';
-import './styles/Login.css';
+import './styles/login.css';
 
 function Login(props) {
   const [userName, setUserName] = useState('');

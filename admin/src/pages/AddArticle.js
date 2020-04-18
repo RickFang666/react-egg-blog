@@ -13,7 +13,7 @@ import {
 } from 'antd';
 
 import servicePath from '../apiUrl.js';
-import './styles/AddArticle.css';
+import './styles/addArticle.css';
 
 const { Option } = Select;
 const { TextArea } = Input;
