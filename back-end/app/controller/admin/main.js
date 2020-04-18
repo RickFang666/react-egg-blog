@@ -13,7 +13,7 @@ class MainController extends Controller {
     const userName = this.ctx.request.body.userName;
     const password = this.ctx.request.body.password;
     console.log('userName,password', userName, password);
-    console.log('this.ctx.request', this.ctx.request);
+    console.log('this.ctx.session', this.ctx.session);
     const sql =
       " SELECT userName FROM admin_user WHERE userName = '" +
       userName +
@@ -30,6 +30,38 @@ class MainController extends Controller {
     } else {
       this.ctx.body = { data: '登录失败' };
     }
+  }
+
+  // 后台文章分类信息
+  async getTypeInfo() {
+    const resType = await this.app.mysql.select('type');
+    this.ctx.body = { data: resType };
+  }
+
+  // 添加文章
+  async addArticle() {
+    const tmpArticle = this.ctx.request.body;
+    // tmpArticle.
+    const result = await this.app.mysql.insert('article', tmpArticle);
+    const insertSuccess = result.affectedRows === 1;
+    const insertId = result.insertId;
+
+    this.ctx.body = {
+      isSuccess: insertSuccess,
+      insertId,
+    };
+  }
+
+  // 修改文章
+  async updateArticle() {
+    const tmpArticle = this.ctx.request.body;
+
+    const result = await this.app.mysql.update('article', tmpArticle);
+    const updateSuccess = result.affectedRows === 1;
+    console.log(updateSuccess);
+    this.ctx.body = {
+      isSuccess: updateSuccess,
+    };
   }
 }
 
